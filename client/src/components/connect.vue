@@ -166,17 +166,17 @@ import { generateName } from './namegen'
       // }
 
       // auto-user fill
-      let displayname = this.$accessor.displayname
+      let displayname = generateName()
 
-      const usr = new URL(location.href).searchParams.get('usr')
-      if (usr) {
-        this.removeUrlParam('usr')
-        displayname = this.$accessor.displayname || usr
-      }
+      // const usr = new URL(location.href).searchParams.get('usr')
+      // if (usr) {
+        // this.removeUrlParam('usr')
+        // displayname = this.$accessor.displayname || usr
+      // }
 
       if (displayname !== '' && password !== '') {
         this.$accessor.login({ displayname, password })
-        this.autoPassword = null
+        // this.autoPassword = null
       }
     }
 
