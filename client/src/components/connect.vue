@@ -9,7 +9,7 @@
         <span v-if="!autoPassword">{{ $t('connect.login_title') }}</span>
         <span v-else>{{ $t('connect.invitation_title') }}</span>
         <input type="text" :placeholder="$t('connect.displayname')" v-model="displayname" />
-        <input type="password" :placeholder="$t('connect.password')" v-model="password" v-if="!autoPassword" />
+        <input hidden type="text" :placeholder="$t('connect.password')" v-model="password" v-if="!autoPassword" />
         <button type="submit" @click.stop.prevent="login">
           {{ $t('connect.connect') }}
         </button>
@@ -148,24 +148,26 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
+import { generateName } from './namegen'
 
   @Component({ name: 'neko-connect' })
   export default class extends Vue {
     private autoPassword: string | null = new URL(location.href).searchParams.get('pwd')
-
-    private displayname: string = ''
-    private password: string = ''
+    private displayname: string = generateName()
+    private password: string = 'neko'
 
     mounted() {
       // auto-password fill
-      let password = this.$accessor.password
-      if (this.autoPassword !== null) {
-        this.removeUrlParam('pwd')
-        password = this.autoPassword
-      }
+      // let password = this.$accessor.password
+      let password = "neko"
+      // if (this.autoPassword !== null) {
+        // this.removeUrlParam('pwd')
+        // password = this.autoPassword
+      // }
 
       // auto-user fill
       let displayname = this.$accessor.displayname
+
       const usr = new URL(location.href).searchParams.get('usr')
       if (usr) {
         this.removeUrlParam('usr')

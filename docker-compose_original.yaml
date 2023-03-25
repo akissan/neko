@@ -1,9 +1,7 @@
 version: "3.4"
 services:
   neko:
-    # image: "m1k1o/neko:firefox"
-    build: "./.docker/firefox"
-      # context: './.docker/firefox'
+    image: "m1k1o/neko:firefox"
     restart: "unless-stopped"
     shm_size: "2gb"
     ports:
@@ -15,4 +13,3 @@ services:
       NEKO_PASSWORD_ADMIN: admin
       NEKO_EPR: 52000-52100
       NEKO_ICELITE: 1
-      NEKO_NAT1TO1: 127.0.0.1
