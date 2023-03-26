@@ -30,7 +30,7 @@ RUN set -eux; apt-get update; \
 COPY .docker/firefox/supervisord.conf /etc/neko/supervisord/firefox.conf
 COPY .docker/firefox/neko.js /usr/lib/firefox/mozilla.cfg
 COPY .docker/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
-COPY .docker/firefox/policies.json.old /usr/lib/firefox/distribution/policies.json
+COPY .docker/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 COPY --chown=neko .docker/firefox/profiles.ini /home/neko/.mozilla/firefox/profiles.ini
 COPY .docker/firefox/openbox.xml /etc/neko/openbox.xml
 
