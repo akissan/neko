@@ -27,9 +27,13 @@ RUN set -eux; apt-get update; \
 
 #
 # copy configuation files
-COPY supervisord.conf /etc/neko/supervisord/firefox.conf
-COPY neko.js /usr/lib/firefox/mozilla.cfg
-COPY autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
-COPY policies.json /usr/lib/firefox/distribution/policies.json
-COPY --chown=neko profiles.ini /home/neko/.mozilla/firefox/profiles.ini
-COPY openbox.xml /etc/neko/openbox.xml
+COPY .docker/firefox/supervisord.conf /etc/neko/supervisord/firefox.conf
+COPY .docker/firefox/neko.js /usr/lib/firefox/mozilla.cfg
+COPY .docker/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
+COPY .docker/firefox/policies.json.old /usr/lib/firefox/distribution/policies.json
+COPY --chown=neko .docker/firefox/profiles.ini /home/neko/.mozilla/firefox/profiles.ini
+COPY .docker/firefox/openbox.xml /etc/neko/openbox.xml
+
+COPY secrets/russian_trusted_root_ca_pem.crt secrets/russian_trusted_sub_ca_pem.crt  /usr/local/share/ca-certificates/
+RUN apt-get install -y ca-certificates
+RUN update-ca-certificates

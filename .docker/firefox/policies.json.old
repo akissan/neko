@@ -1,11 +1,7 @@
 {
   "policies": {
-    "Certificates": {
-      "ImportEnterpriseRoots": true,
-      "Install": ["/usr/local/share/ca-certificates/russian_trusted_root_ca_pem.crt", "/usr/local/share/ca-certificates/russian_trusted_sub_ca_pem.crt"]
-    },
     "BlockAboutAddons": false,
-    "BlockAboutConfig": false,
+    "BlockAboutConfig": true,
     "BlockAboutProfiles": true,
     "BlockAboutSupport": true,
     "Bookmarks": [

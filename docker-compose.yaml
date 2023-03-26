@@ -2,8 +2,13 @@ version: "3.4"
 services:
   neko:
     # image: "m1k1o/neko:firefox"
-    build: "./.docker/firefox"
-      # context: './.docker/firefox'
+    build:
+      context: .
+      dockerfile: .docker/firefox/Dockerfile
+#    secrets:
+#      - server-root-certificate
+#      - server-certificate
+#         context: './.docker/firefox'
     restart: "unless-stopped"
     shm_size: "2gb"
     ports:
@@ -16,3 +21,8 @@ services:
       NEKO_EPR: 52000-52100
       NEKO_ICELITE: 1
       NEKO_NAT1TO1: 127.0.0.1
+#secrets:
+#  server-root-certificate:
+#    file: ./secrets/russian_trusted_root_ca_pem.crt
+#  server-certificate:
+#    file: ./secrets/russian_trusted_sub_ca_pem.crt
